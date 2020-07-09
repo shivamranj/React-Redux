@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 
-import CounterControl from '../../components/CounterControl/CounterControl';
-import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import CounterControl from './Components/countercontrol.js'
+import CounterOutput from './Components/counteroutput.js'
 
 class Counter extends Component {
     state = {
@@ -24,3 +25,22 @@ class Counter extends Component {
                 break;
         }
     }
+    render () {
+        return (
+            <div>
+                <CounterOutput value={this.props.ctr} />
+                <CounterControl label="Increment" clicked={() => this.counterChangedHandler( 'inc' )} />
+                <CounterControl label="Decrement" clicked={() => this.counterChangedHandler( 'dec' )}  />
+                <CounterControl label="Add 5" clicked={() => this.counterChangedHandler( 'add', 5 )}  />
+                <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
+            </div>
+        );
+    }
+}
+const mapStateToProps=state=>
+{
+  return{
+      ctr:state.counter
+  }  ;  
+}
+export default connect(mapStateToProps)(Counter);

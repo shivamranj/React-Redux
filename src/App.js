@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Counter from './counter'
+import counter from './counter';
 
 class App extends Component {
 
@@ -38,6 +40,7 @@ class App extends Component {
   {this.state.todos.map((items,i) => <li key={i}>{items}</li> ) }
   </div>
       </ul>
+      <Counter/>
     </div>
   );
   }
